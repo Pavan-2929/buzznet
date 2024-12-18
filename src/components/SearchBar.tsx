@@ -27,7 +27,7 @@ const SearchBar = ({ className }: SearchBarProps) => {
   };
 
   return (
-    <div className={cn("relative w-[300px]", className)}>
+    <div className={cn("relative max-w-[300px] w-[300px]", className)}>
       <form onSubmit={handleSubmit}>
         <Input
           className="pe-10"
