@@ -9,7 +9,7 @@ import { submitPostAction } from "./action"
 import StarterKit from "@tiptap/starter-kit";
 import "./style.css";
 import LoadingButton from "@/components/LoadingButton";
-import { useSubmitPostMuation } from "./postMutations";
+import { useSubmitPostMuation } from "./mutations";
 
 export default function PostEditor() {
     const { user } = useSession();
