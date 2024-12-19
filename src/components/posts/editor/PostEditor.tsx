@@ -8,9 +8,12 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import { submitPostAction } from "./action"
 import StarterKit from "@tiptap/starter-kit";
 import "./style.css";
+import LoadingButton from "@/components/LoadingButton";
+import { useSubmitPostMuation } from "./postMutations";
 
 export default function PostEditor() {
     const { user } = useSession();
+    const mutation = useSubmitPostMuation()
 
     const editor = useEditor({
         extensions: [
@@ -29,9 +32,12 @@ export default function PostEditor() {
             blockSeparator: "\n",
         }) || "";
 
-    async function onSubmit() {
-        await submitPostAction(input);
-        editor?.commands.clearContent();
+    function onSubmit() {
+        mutation.mutate(input, {
+            onSuccess: () => {
+                editor?.commands.clearContent()
+            }
+        })
     }
 
     return (
@@ -44,13 +50,14 @@ export default function PostEditor() {
                 />
             </div>
             <div className="flex justify-end">
-                <Button
+                <LoadingButton
                     onClick={onSubmit}
                     disabled={!input.trim()}
                     className="min-w-20"
+                    loading={mutation.isPending}
                 >
                     Post
-                </Button>
+                </LoadingButton>
             </div>
         </div>
     );

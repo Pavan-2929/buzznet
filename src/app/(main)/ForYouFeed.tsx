@@ -3,10 +3,9 @@
 import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
 import Post from "@/components/posts/Post";
 import PostsSkeletonLoader from "@/components/SkeletonLoaders/PostsSkeletonLoader";
-import { Button } from "@/components/ui/button";
 import kyInstance from "@/lib/ky";
-import { PostData, PostPage } from "@/lib/types";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { PostPage } from "@/lib/types";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import React from "react";
 
@@ -16,7 +15,6 @@ const ForYouFeed = () => {
         fetchNextPage,
         hasNextPage,
         isFetching,
-        isFetchingNextPage,
         status,
     } = useInfiniteQuery({
         queryKey: ["post-feed", "for-you-feed"],

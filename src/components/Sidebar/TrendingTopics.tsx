@@ -41,7 +41,7 @@ const TrendingTopics = async () => {
                 return (
                     <Link href={`/hashtag/${title}`} className="block">
                         <p
-                            className="line-clamp-1 font-semibold hover:underline"
+                            className="line-clamp-1 font-medium hover:underline"
                             title="hashtag"
                         >
                             {hashtag}
