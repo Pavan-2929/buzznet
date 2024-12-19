@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { LogOut, UserIcon } from 'lucide-react'
 import { logoutAction } from '@/app/(auth)/actions'
+import { useQueryClient } from '@tanstack/react-query'
 
 interface UserButtonProps {
     className?: string
@@ -16,11 +17,12 @@ interface UserButtonProps {
 const UserButton = ({ className }: UserButtonProps) => {
 
     const { user } = useSession()
+    const queryClient = useQueryClient()
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <button className={cn("rounded-full", className)}>
-                    <UserAvatar avatarUrl={user.avatarUrl}  />
+                    <UserAvatar avatarUrl={user.avatarUrl} />
                 </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -37,6 +39,7 @@ const UserButton = ({ className }: UserButtonProps) => {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => {
                     logoutAction()
+                    queryClient.clear()
                 }}>
                     <LogOut className='mr-2 size-4' />
                     Logout

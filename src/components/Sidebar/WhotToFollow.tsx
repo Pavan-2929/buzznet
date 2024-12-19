@@ -21,10 +21,10 @@ const WhoToFollow = async () => {
     });
 
     return (
-        <div className="rounded-3xl bg-card p-5">
-            <p className="mb-5 text-xl font-bold">Who to follow</p>
+        <div className="rounded-2xl bg-card p-5 space-y-5">
+            <div className="text-xl font-bold">Who to Follow</div>
             {usersToFollow.map((user) => (
-                <div key={user.id} className="flex w-full items-center justify-between">
+                <div key={user.id} className="flex w-full items-center justify-between ">
                     <Link
                         href={`/user/${user.username}`}
                         className="flex items-center gap-3"
