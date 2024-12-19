@@ -17,7 +17,7 @@ const UserAvatar = ({ avatarUrl, className, size }: UserAvatarProps) => {
             alt='User Image'
             height={size ?? 48}
             width={size ?? 48}
-            className={cn("rounded-full ", className)}
+            className={cn("rounded-full object-cover h-fit ", className)}
         />
     )
 }
