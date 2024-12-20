@@ -1,7 +1,4 @@
 import PostEditor from '@/components/posts/editor/PostEditor'
-import Post from '@/components/posts/Post'
-import prisma from '@/lib/prisma'
-import { postDataInclude } from '@/lib/types'
 import React from 'react'
 import ForYouFeed from './ForYouFeed'
 import TrendsSidebar from '@/components/Sidebar/TrendsSidebar'

@@ -1,9 +1,9 @@
 import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
-import { userDataSelect } from "@/lib/types";
 import UserAvatar from "../UserAvatar";
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { getUserDataSelect } from "@/lib/types";
+import FollowButton from "../FollowButton";
 
 const WhoToFollow = async () => {
     const { user } = await validateRequest();
@@ -15,16 +15,25 @@ const WhoToFollow = async () => {
             NOT: {
                 id: user.id,
             },
+            followers: {
+                none: {
+                    followerId: user.id,
+                },
+            },
         },
-        select: userDataSelect,
+        select: getUserDataSelect(user.id),
         take: 5,
     });
 
+    console.log("Users to Follow:", JSON.stringify(usersToFollow, null, 2));
+
+    console.log(usersToFollow);
+
     return (
-        <div className="rounded-2xl bg-card p-5 space-y-5">
+        <div className="space-y-5 rounded-2xl bg-card p-5">
             <div className="text-xl font-bold">Who to Follow</div>
             {usersToFollow.map((user) => (
-                <div key={user.id} className="flex w-full items-center justify-between ">
+                <div key={user.id} className="flex w-full items-center justify-between">
                     <Link
                         href={`/user/${user.username}`}
                         className="flex items-center gap-3"
@@ -39,7 +48,15 @@ const WhoToFollow = async () => {
                             </p>
                         </div>
                     </Link>
-                    <Button>Follow</Button>
+                    <FollowButton
+                        userId={user.id}
+                        initialState={{
+                            totalFollowers: user._count.followers,
+                            isFollowedByLoggedInUser: user.followers.some(
+                                ({ followerId }) => followerId === user.id,
+                            ),
+                        }}
+                    />
                 </div>
             ))}
         </div>

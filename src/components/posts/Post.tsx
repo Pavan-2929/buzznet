@@ -14,7 +14,6 @@ interface PostProps {
 
 const Post = ({ post }: PostProps) => {
   const { user } = useSession()
-  console.log(post);
   return (
     <div className="space-y-3 rounded-2xl bg-card p-5 shadow-md ">
       <div className="flex justify-between items-start w-full">

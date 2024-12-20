@@ -28,9 +28,7 @@ const ForYouFeed = () => {
         initialPageParam: null as string | null,
         getNextPageParam: (lastpage) => lastpage.nextCursor,
     });
-    console.log(data)
     const posts = data?.pages.flatMap((page) => page.posts) || [];
-    console.log(posts);
 
     if (status === "pending") {
         return <PostsSkeletonLoader />;
