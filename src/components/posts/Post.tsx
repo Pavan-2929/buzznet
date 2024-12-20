@@ -15,7 +15,7 @@ interface PostProps {
 const Post = ({ post }: PostProps) => {
   const { user } = useSession()
   return (
-    <div className="space-y-3 rounded-2xl bg-card p-5 shadow-md ">
+    <div className="space-y-3 rounded-2xl bg-card p-5 shadow-sm ">
       <div className="flex justify-between items-start w-full">
         <div className="flex flex-wrap items-center gap-3">
           <Link href={`user/${post.user.username}`}>

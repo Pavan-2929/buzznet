@@ -25,10 +25,6 @@ const WhoToFollow = async () => {
         take: 5,
     });
 
-    console.log("Users to Follow:", JSON.stringify(usersToFollow, null, 2));
-
-    console.log(usersToFollow);
-
     return (
         <div className="space-y-5 rounded-2xl bg-card p-5">
             <div className="text-xl font-bold">Who to Follow</div>

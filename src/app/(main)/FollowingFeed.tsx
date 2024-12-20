@@ -9,7 +9,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import React from "react";
 
-const ForYouFeed = () => {
+const FollowingFeed = () => {
     const {
         data,
         fetchNextPage,
@@ -17,11 +17,11 @@ const ForYouFeed = () => {
         isFetching,
         status,
     } = useInfiniteQuery({
-        queryKey: ["post-feed", "for-you"],
+        queryKey: ["post-feed", "following"],
         queryFn: ({ pageParam }) =>
             kyInstance
                 .get(
-                    "/api/posts/for-you",
+                    "/api/posts/following",
                     pageParam ? { searchParams: { cursor: pageParam } } : {},
                 )
                 .json<PostPage>(),
@@ -35,8 +35,8 @@ const ForYouFeed = () => {
     }
 
     if (status === "success" && !hasNextPage && !posts.length) {
-        return <p className="font-bold text-primary text-center">
-            No one hase posted anything yet
+        return <p className="text-center font-bold text-primary">
+            No posts here. Start people following.
         </p>
     }
 
@@ -58,4 +58,4 @@ const ForYouFeed = () => {
     );
 };
 
-export default ForYouFeed;
+export default FollowingFeed;
