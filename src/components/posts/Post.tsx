@@ -7,6 +7,7 @@ import UserAvatar from "../UserAvatar";
 import moment from "moment"
 import PostMoreButton from "./delete/PostMoreButton";
 import { useSession } from "@/app/(main)/SessionProvider";
+import Linkify from "../Linkify";
 
 interface PostProps {
   post: PostData;
@@ -43,7 +44,9 @@ const Post = ({ post }: PostProps) => {
         }
       </div>
       <div className="whitespace-pre-line break-words">
-        <p>{post.content}</p>
+        <Linkify>
+          <p>{post.content}</p>
+        </Linkify>
       </div>
     </div>
   );
